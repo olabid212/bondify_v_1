@@ -3,16 +3,25 @@ import React from "react";
 import { Image } from "expo-image";
 import { images } from "../../constant/images";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import {
+ ListFilter,
+ RotateCcw
+} from "lucide-react-native";
 
 const HomeHeader = ({ title }) => {
   return (
-    <View className="flex-row items-center justify-between ">
+    <View className="flex-row items-center justify-between bg-transparent px-4 py-4">
+         
       <Image
         source={images.logo}
-        style={{ width: 80, height: 40 }}
+        style={{ width: 100, height: 40 }}
         contentFit="contain"
       />
-      <MaterialCommunityIcons name="filter" size={24} color="white" />
+      <View className='flex-row gap-4'>
+       <RotateCcw size={24} color="white" />
+      <ListFilter size={28} color="white" />
+      </View>
+
     </View>
   );
 };

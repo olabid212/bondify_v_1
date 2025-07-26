@@ -7,7 +7,7 @@ const ProfileCard = ({ profile }) => {
   if (!profile) return null;
 
   return (
-    <View className="px-4 py-6">
+    <View className=" py-6">
       <View className="rounded-3xl shadow-lg overflow-hidden bg-white">
         <View className="relative h-[500px] w-full">
           <View className="w-full h-full">

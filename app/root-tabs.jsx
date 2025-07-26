@@ -1,12 +1,15 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import {
-  Ionicons,
-  FontAwesome,
-  Octicons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+  Home,
+  Heart,
+  MessageCircle,
+  MessageSquareText,
+  MessageSquareMore,
+  Compass,
+  User,
+} from "lucide-react-native";
 
 import HomeScreen from "./(root)/(tab)/home";
 import DiscoverScreen from "./(root)/(tab)/discover";
@@ -14,15 +17,12 @@ import ChatScreen from "./(root)/(tab)/chats";
 import ProfileScreen from "./(root)/(tab)/profile";
 import MatchesScreen from "./(root)/(tab)/matches";
 
-
-
-// ✅ TabIcon Component (no label)
-const TabIcon = ({ focused, icon, activeIcon }) => (
-    <View style={styles.iconContainer}>
-      {focused ? activeIcon : icon}
-    </View>
-  );
-  
+// ✅ TabIcon Component
+const TabIcon = ({ focused, Icon }) => (
+  <View style={styles.iconContainer}>
+    <Icon size={26} color={focused ? "#fff" : "#8E8E8E"} />
+  </View>
+);
 
 const Tab = createBottomTabNavigator();
 
@@ -32,8 +32,8 @@ const RootTabs = () => {
       screenOptions={{
         tabBarShowLabel: false,
         tabBarStyle: {
-          height: 90,
-          paddingBottom: 10,
+          height: 100,
+          paddingBottom: 40,
           borderTopWidth: 0,
           elevation: 0,
           shadowOpacity: 0,
@@ -47,13 +47,7 @@ const RootTabs = () => {
         component={HomeScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon={<Ionicons name="home-outline" size={24} color="#8E8E8E" />}
-              activeIcon={<Ionicons name="home" size={24} color="#f472b6" />}
-            />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon focused={focused} Icon={Home} />,
         }}
       />
 
@@ -62,15 +56,7 @@ const RootTabs = () => {
         component={MatchesScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon={<FontAwesome name="heart-o" size={24} color="#8E8E8E" />}
-              activeIcon={
-                <FontAwesome name="heart" size={24} color="#f472b6" />
-              }
-            />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon focused={focused} Icon={Heart} />,
         }}
       />
 
@@ -79,17 +65,7 @@ const RootTabs = () => {
         component={ChatScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon={
-                <Ionicons name="chatbubble-outline" size={24} color="#8E8E8E" />
-              }
-              activeIcon={
-                <Ionicons name="chatbubble" size={24} color="#f472b6" />
-              }
-            />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon focused={focused} Icon={MessageSquareText} />,
         }}
       />
 
@@ -98,31 +74,16 @@ const RootTabs = () => {
         component={DiscoverScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon={
-                <Ionicons name="compass-outline" size={24} color="#8E8E8E" />
-              }
-              activeIcon={<Ionicons name="compass" size={24} color="#f472b6" />}
-            />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon focused={focused} Icon={Compass} />,
         }}
       />
+
       <Tab.Screen
         name="Profile"
         component={ProfileScreen}
         options={{
           headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabIcon
-              focused={focused}
-              icon={
-                <Ionicons name="person-outline" size={24} color="#8E8E8E" />
-              }
-              activeIcon={<Ionicons name="person" size={24} color="#f472b6" />}
-            />
-          ),
+          tabBarIcon: ({ focused }) => <TabIcon focused={focused} Icon={User} />,
         }}
       />
     </Tab.Navigator>
@@ -131,14 +92,11 @@ const RootTabs = () => {
 
 export default RootTabs;
 
-// ✅ Styles
 const styles = StyleSheet.create({
   iconContainer: {
     justifyContent: "center",
     alignItems: "center",
-    height: 50, // ✅ Limit the height
-    width: 50, // or auto if not needed
-    paddingVertical: 0, // ✅ No extra vertical padding
+    height: 50,
+    width: 50,
   },
 });
-  

@@ -14,6 +14,7 @@ import {
 import NextButton from "../../../../components/ui/NextButton";
 import { useRouter } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const INTEREST_CATEGORIES = [
   {
@@ -61,7 +62,7 @@ const INTEREST_CATEGORIES = [
 
 const Interests = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
+  // const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
   const toggleInterest = (interest) => {
@@ -73,12 +74,9 @@ const Interests = () => {
   };
 
   return (
+    <SafeAreaProvider>
     <SafeAreaView className="flex-1 bg-app">
-      <KeyboardAvoidingView
-        className="flex-1"
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
-      >
+   
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-3">
             <View className="mt-8">
@@ -86,7 +84,7 @@ const Interests = () => {
                 What are your interests?
               </Text>
 
-              {/* Search */}
+              {/* Search 
               <View className="flex-row items-center bg-app border border-[#A4A4A4] rounded-lg px-4 py-3 mb-8">
                 <Ionicons name="search" size={20} color="#A4A4A4" />
                 <TextInput
@@ -96,14 +94,12 @@ const Interests = () => {
                   onChangeText={setSearchTerm}
                   value={searchTerm}
                 />
-              </View>
+              </View>*/}
             </View>
 
             <ScrollView
               className="flex-1"
-              contentContainerStyle={{
-                paddingBottom: 40,
-              }}
+             showsVerticalScrollIndicator={false}
             >
               {INTEREST_CATEGORIES.map((category) => (
                 <View key={category.title} className="mb-6">
@@ -149,8 +145,9 @@ const Interests = () => {
             </View>
           </View>
         </TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
+
     </SafeAreaView>
+    </SafeAreaProvider>
   );
 };
 
