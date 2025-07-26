@@ -26,7 +26,10 @@ const ProfileCard = ({ profile }) => {
             </View>
           )}
 
-          <View className="absolute bottom-0 left-0 right-0 p-6">
+        </View>
+      </View>
+
+          <View className="absolute bottom-10 left-0 right-0 p-6">
             <View className="flex-row items-center mb-2">
               <Text className="text-white text-3xl font-bold mr-2">
                 {profile.name}
@@ -60,8 +63,6 @@ const ProfileCard = ({ profile }) => {
               </View>
             )}
           </View>
-        </View>
-      </View>
     </View>
   );
 };

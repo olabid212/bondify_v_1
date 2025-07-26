@@ -24,7 +24,7 @@ const profiles = [
     location: "New York, NY",
     distance: "2 miles away",
     bio: "Adventure seeker, coffee enthusiast, and dog lover.",
-    images: [images.userImage],
+    images:["https://i.pravatar.cc/150?img=1", "https://i.pravatar.cc/150?img=2",],
     interests: ["Travel", "Photography", "Hiking", "Coffee"],
     verified: true,
   },

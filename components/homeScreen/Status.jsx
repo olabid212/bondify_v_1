@@ -32,6 +32,11 @@ const mockStatuses = [
     name: "Sam",
     image: "https://i.pravatar.cc/150?img=4",
   },
+   {
+    id: "4",
+    name: "Alex",
+    image: "https://i.pravatar.cc/150?img=3",
+  },
 ];
 
 const Status = () => {
