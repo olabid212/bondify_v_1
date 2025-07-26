@@ -1,0 +1,62 @@
+import React from "react";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import NextButton from "../../../../components/ui/NextButton";
+import { useRouter } from "expo-router";
+import TextInput from "../../../../components/inputs/TextInput";
+import Feather from "@expo/vector-icons/Feather";
+import { colors } from "../../../../constant/colors";
+import Info from "../../../../components/ui/Info";
+
+const Username = () => {
+
+  const router = useRouter();
+
+  return (
+    <SafeAreaView className="flex-1 bg-app">
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View className="flex-1 px-2">
+            <View className="flex-1 mt-8">
+              <Text className="text-[25px] font-SatoshiBold text-white mb-2">
+                What is your name?
+              </Text>
+              <Text className="text-white font-Satoshi">
+                Let's Get to Know Each Other
+              </Text>
+              <View>
+                <TextInput
+                  placeholder="Badejo"
+                  className="mt-4"
+                  keyboardType="default"
+                />
+                <TextInput placeholder="Ibitayo" className="" />
+              </View>
+              <Info title="This would be used to match people" />
+            </View>
+
+            <View className="w-full items-end pb-6">
+              <NextButton
+                variant="white"
+                onPress={() => router.push("/age")}
+              />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+};
+
+export default Username;
