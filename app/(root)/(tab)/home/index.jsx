@@ -18,20 +18,53 @@ import { images } from '../../../../constant/images'
 
 const profiles = [
   {
-    id: 1,
-    name: "Emma",
-    age: 26,
-    location: "New York, NY",
-    distance: "2 miles away",
-    bio: "Adventure seeker, coffee enthusiast, and dog lover.",
-    images:["https://i.pravatar.cc/150?img=1", "https://i.pravatar.cc/150?img=2",],
-    interests: ["Travel", "Photography", "Hiking", "Coffee"],
-    verified: true,
+   id: 1,
+  name: "Badejo tayo",
+  age: 26,
+  location: "New York, NY",
+  distance: "2 miles away",
+  bio: "Adventure seeker, coffee enthusiast, and dog lover. Looking for someone to explore the city with! I love hiking on weekends, trying new restaurants, and capturing beautiful moments through photography. Life is too short not to laugh every day! 🌟\n\nCurrently working as a UX designer and passionate about creating meaningful experiences. When I'm not designing, you'll find me at a local coffee shop, planning my next adventure, or cuddling with my golden retriever, Max.",
+  images: [
+    "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1534751516642-a1af1ef26a56?w=400&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=600&fit=crop",
+    "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=600&fit=crop",
+  ],
+  interests: [
+    "Travel",
+    "Photography",
+    "Hiking",
+    "Coffee",
+    "Dogs",
+    "Art",
+    "Music",
+    "Yoga",
+    "Cooking",
+    "Reading",
+  ],
+  verified: true,
+  occupation: "photography",
+  education: "Master's in Design, NYU",
+  height: "5'6\"",
+  lookingFor: "Long-term relationship",
+  relationshipType: "Monogamous",
+  drinking: "Socially",
+  smoking: "Never",
+  exercise: "Regularly",
+  pets: "Dog lover",
+  children: "Want someday",
+  lastActive: "Active today",
+  mutualFriends: 3,
+  mutualInterests: ["Photography", "Coffee", "Travel"],
   },
   {
     id: 2,
     name: "Sarah",
     age: 24,
+    occupation: "Baker",
+    religion: "Muslim",
     location: "Brooklyn, NY",
     distance: "5 miles away",
     bio: "Artist by day, foodie by night.",
@@ -43,7 +76,7 @@ const profiles = [
 
 const Home = () => {
 
-const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
+  const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [matches, setMatches] = useState(12);
   const [likes, setLikes] = useState(48);
 
@@ -72,15 +105,15 @@ const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
       <SafeAreaView className="bg-app flex-1 px-4">
         <View style={{ flex: 1 }}>
           <HomeHeader title="Home" />
-       
+
           <ScrollView
             className="pt-3 flex-1"
             contentContainerStyle={{ paddingBottom: 100 }} // add extra bottom space for buttons
             showsVerticalScrollIndicator={false}
           >
-               <Status />
-                  <ProfileCard profile={currentProfile} />
-   
+            <Status />
+            <ProfileCard profile={currentProfile} />
+
           </ScrollView>
 
           {/* ✅ Fixed Action Buttons at bottom */}
