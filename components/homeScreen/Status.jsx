@@ -53,7 +53,7 @@ const Status = () => {
             </View>
           ) : (
             <LinearGradient
-              colors={["#FD465C", "#A80EC1"]}
+              colors={['#FEE140', '#FA709A']}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.gradientBorder}

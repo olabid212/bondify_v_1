@@ -57,14 +57,14 @@ const ProfileCard = ({ profile }) => {
               {profile.education && (
                 <View className="flex-row items-center">
                   <GraduationCap size={16} color="white" />
-                  <Text className="text-white font-SatoshiLight ml-2">{profile.education}</Text>
+                  <Text className="text-white font-SatoshiMedium ml-2">{profile.education}</Text>
                 </View>
               )}
 
               {profile.occupation && (
                 <View className="flex-row items-center">
                   <Briefcase size={16} color="white" />
-                  <Text className="text-white font-Satoshi ml-2">{profile.occupation}</Text>
+                  <Text className="text-white font-SatoshiMedium ml-2 capitalize">{profile.occupation}</Text>
                 </View>
               )}
             </View>
@@ -88,7 +88,7 @@ const ProfileCard = ({ profile }) => {
           </View>
         )}
 
-        <View className="bg-white/5 border-[0.5px] border-gray-900 p-6 rounded-2xl">
+        <View className="bg-white/12 border-[0.5px] border-gray-800 p-6 rounded-2xl">
           {/* Bio with toggle */}
           {profile.bio && (
             <View className="mb-4">
