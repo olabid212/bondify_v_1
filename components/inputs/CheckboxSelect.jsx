@@ -43,7 +43,7 @@ const CheckboxSelect = ({
                 value.includes(option.value) ? "checkbox" : "square-outline"
               }
               size={20}
-              color={value.includes(option.value) ? "#A80EC1" : "#A4A4A4"}
+              color={value.includes(option.value) ? "#FF0066" : "#A4A4A4"}
             />
           </TouchableOpacity>
         ))}

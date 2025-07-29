@@ -41,7 +41,7 @@ const RadioSelect = ({
                     : "radio-button-off"
                 }
                 size={20}
-                color={value === option.value ? "#A80EC1" : "#A4A4A4"}
+                color={value === option.value ? "#FF0066" : "#A4A4A4"}
               />
             </View>
           </TouchableOpacity>

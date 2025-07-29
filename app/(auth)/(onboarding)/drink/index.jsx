@@ -15,7 +15,7 @@ import RadioSelect from "../../../../components/inputs/RadioSelect";
 import Info from "../../../../components/ui/Info";
 
 
-const Smoke = () => {
+const Drink = () => {
   const [gender, setGender] = useState("");
 
   const router = useRouter();
@@ -31,7 +31,7 @@ const Smoke = () => {
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
               <Text className="text-[25px] font-SatoshiBold text-app mb-2">
-          Do you Smoke?
+          Do you Drink?
               </Text>
 
               <View>
@@ -39,7 +39,7 @@ const Smoke = () => {
                   value={gender}
                   onChange={setGender}
                   options={[
-                    { label: "No, i don't smoke", value: "no" },
+                    { label: "No, i don't drink", value: "no" },
                     { label: "Socially", value: "socially" },
                     { label: "Occassionally", value: "occassionally" },
                     { label: "Often", value: "often" },
@@ -54,7 +54,7 @@ const Smoke = () => {
             <View className="w-full items-end pb-6">
               <NextButton
                 variant="gradient"
-                onPress={() => router.push("/drink")}
+                onPress={() => router.push("/about")}
               />
             </View>
           </View>
@@ -64,4 +64,4 @@ const Smoke = () => {
   );
 };
 
-export default Smoke;
+export default Drink;

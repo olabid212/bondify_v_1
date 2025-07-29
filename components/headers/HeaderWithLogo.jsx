@@ -15,7 +15,7 @@ const router = useRouter()
 
       <Image
         source={require("../../assets/images/bondify-icon-color.png")}
-        style={{ width: 80, height: 40 }}
+        style={{ width: 60, height: 40 }}
         contentFit="contain"
       />
       <Text className="text-white font-SatoshiMedium">{title}</Text>

@@ -1,18 +1,13 @@
-import { View, Text, StyleSheet } from 'react-native'
-import React, { useState } from 'react'
-import HomeHeader from '../../../../components/headers/HomeHeader'
-import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context'
-import { ScrollView } from 'react-native-gesture-handler'
+import { View, Text, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import HomeHeader from "../../../../components/headers/HomeHeader";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native-gesture-handler";
 import { LinearGradient } from "expo-linear-gradient";
-import ActionButtons from '../../../../components/homeScreen/ActionButtons'
-import { images } from '../../../../constant/images'
-import SwipeCard from '../../../../components/homeScreen/SwipeCard'
-import Status from "../../../../components/homeScreen/Status"
-
-
-
-
-
+import ActionButtons from "../../../../components/homeScreen/ActionButtons";
+import { images } from "../../../../constant/images";
+import SwipeCard from "../../../../components/homeScreen/SwipeCard";
+import Status from "../../../../components/homeScreen/Status";
 
 const profiles = [
   {
@@ -89,7 +84,6 @@ const profiles = [
 ];
 
 const Home = () => {
-
   const [currentProfileIndex, setCurrentProfileIndex] = useState(0);
   const [matches, setMatches] = useState(12);
   const [likes, setLikes] = useState(48);
@@ -109,10 +103,6 @@ const Home = () => {
       setCurrentProfileIndex((prev) => (prev + 1) % profiles.length);
     }, 300);
   };
-
-
-
-
 
   return (
     <SafeAreaProvider>
@@ -137,14 +127,7 @@ const Home = () => {
         <View style={{ flex: 1 }}>
           <HomeHeader title="Home" />
 
-          <ScrollView
-            className=" flex-1"
-            contentContainerStyle={{ paddingBottom: 100 }} // add extra bottom space for buttons
-            showsVerticalScrollIndicator={false}
-          >
-
-            <SwipeCard profile={currentProfile} />
-          </ScrollView>
+          <SwipeCard profile={currentProfile} />
 
           {/* ✅ Fixed Action Buttons at bottom */}
           <View style={styles.actionButtonWrapper}>
@@ -159,16 +142,16 @@ const Home = () => {
   );
 };
 
-export default Home
+export default Home;
 
 const styles = StyleSheet.create({
   actionButtonWrapper: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     left: 0,
     right: 0,
     paddingHorizontal: 20,
-    alignItems: 'center',
+    alignItems: "center",
     zIndex: 10,
   },
 });
