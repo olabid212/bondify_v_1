@@ -15,7 +15,7 @@ import RadioSelect from "../../../../components/inputs/RadioSelect";
 import Info from "../../../../components/ui/Info";
 
 
-const ReligionQuestions = () => {
+const Education = () => {
   const [gender, setGender] = useState("");
 
   const router = useRouter();
@@ -31,7 +31,7 @@ const ReligionQuestions = () => {
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
               <Text className="text-[25px] font-SatoshiBold text-app mb-2">
-            Your religion or spiritual belief?
+            Highest Education Obtained
               </Text>
 
               <View>
@@ -39,9 +39,13 @@ const ReligionQuestions = () => {
                   value={gender}
                   onChange={setGender}
                   options={[
-                    { label: "is very important", value: "very-important" },
-                    { label: "is quite important but i may still consider someone from another faith", value: "quite-important" },
-                    { label: "it doesn't matter to me at all", value: "not-matter" },
+                    { label: "Bachellor", value: "bachelor" },
+                    { label: "Diploma", value: "diploma" },
+                    { label: "Masters", value: "master" },
+                    { label: "PhD", value: "phd" },
+                    { label: "Primary", value: "primary" },
+                    { label: "Secondary", value: "secondary" },
+                    { label: "None", value: "none" },
                   ]}
                   className="mt-2"
                 />
@@ -52,7 +56,7 @@ const ReligionQuestions = () => {
             <View className="w-full items-end pb-6">
               <NextButton
                 variant="gradient"
-                onPress={() => router.push("/education")}
+                onPress={() => router.push("/occupation")}
               />
             </View>
           </View>
@@ -62,4 +66,4 @@ const ReligionQuestions = () => {
   );
 };
 
-export default ReligionQuestions;
+export default Education;
