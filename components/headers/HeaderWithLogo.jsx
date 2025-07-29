@@ -8,14 +8,14 @@ const HeaderWithLogo = ({ title }) => {
 const router = useRouter()    
 
   return (
-    <View className="flex-row items-center justify-between ">
+    <View className="flex-row items-center justify-between pt-3">
       <Pressable onPress={() => router.back()}>
-        <Entypo name="chevron-small-left" size={24} color="#fff" />
+        <Entypo name="chevron-small-left" size={30} color="#000" />
       </Pressable>
 
       <Image
-        source={require("../../assets/images/B-logo.png")}
-        style={{ width: 100, height: 40 }}
+        source={require("../../assets/images/bondify-icon-color.png")}
+        style={{ width: 80, height: 40 }}
         contentFit="contain"
       />
       <Text className="text-white font-SatoshiMedium">{title}</Text>

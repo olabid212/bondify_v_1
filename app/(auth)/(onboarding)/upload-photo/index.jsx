@@ -40,15 +40,15 @@ const UploadPhoto = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
     
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-4">
             <View className="mt-8 mb-6">
-              <Text className="text-[25px] font-SatoshiBold text-white mb-2">
+              <Text className="text-[25px] font-SatoshiBold text-app mb-2">
                 Upload your photos
               </Text>
-              <Text className="text-white  text-sm">
+              <Text className="text-app  text-sm">
                 We'd love to see you. Upload a photo for your dating journey. Upload at least 3 clearer pictures
               </Text>
             </View>
@@ -58,7 +58,7 @@ const UploadPhoto = () => {
               {photos.map((photo, index) => (
                 <TouchableOpacity
                   key={index}
-                  className="w-[30%] h-[22%] border  border-ash  rounded-xl items-center justify-center"
+                  className="w-[30%] h-[22%] border  border-[#dadada]  rounded-xl items-center justify-center"
                   onPress={() => pickImage(index)}
                   activeOpacity={0.7}
                 >
@@ -69,7 +69,7 @@ const UploadPhoto = () => {
                       contentFit="cover"
                     />
                   ) : (
-                    <Ionicons name="add" size={28} color="#bbb" />
+                    <Ionicons name="camera" size={28} color="#dadada" />
                   )}
                 </TouchableOpacity>
               ))}
@@ -77,7 +77,7 @@ const UploadPhoto = () => {
             {/* Next Button */}
             <View className="w-full items-end pb-6 mt-10">
               <NextButton
-                variant="white"
+                variant="gradient"
                 onPress={() => {
                   // You could validate or store `photos` here
                   router.push("/profile-answers");

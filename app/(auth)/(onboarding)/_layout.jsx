@@ -15,6 +15,9 @@ export default function OnboardingLayout() {
       <Stack.Screen name="upload-photo" />
       <Stack.Screen name="questions" />
       <Stack.Screen name="profile-answers" />
+      <Stack.Screen name="agreement" />
+      <Stack.Screen name="religion" />
+      <Stack.Screen name="religion-question" />
     </Stack>
   );
 }

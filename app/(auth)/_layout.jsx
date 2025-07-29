@@ -6,7 +6,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function AuthLayout() {
   return (
-    <SafeAreaView className="flex-1 bg-app px-4">
+    <SafeAreaView className="flex-1 bg-white px-4">
       <HeaderWithLogo  />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="login" />
@@ -14,6 +14,7 @@ export default function AuthLayout() {
         <Stack.Screen name="reset-password" />
         <Stack.Screen name="validation" />
         <Stack.Screen name="(onboarding)" />
+
       </Stack>
     </SafeAreaView>
   );

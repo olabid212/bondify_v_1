@@ -1,7 +1,10 @@
 // components/GlobalPhoneInput.jsx
 import React, { useState } from "react";
 import { View, TextInput, StyleSheet, Platform } from "react-native";
-import CountryPicker, { DARK_THEME } from "react-native-country-picker-modal";
+import CountryPicker, {
+  DARK_THEME,
+  LIGHT_THEME,
+} from "react-native-country-picker-modal";
 
 const GlobalPhoneInput = ({ onChangePhone, onChangeCountry }) => {
   const [countryCode, setCountryCode] = useState("NG");
@@ -25,7 +28,7 @@ const GlobalPhoneInput = ({ onChangePhone, onChangeCountry }) => {
           withCallingCode
           withAlphaFilter
           onSelect={onSelect}
-          theme={DARK_THEME}
+          theme={LIGHT_THEME}
           containerButtonStyle={styles.countryPickerButton}
         />
       </View>
@@ -49,16 +52,17 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
     borderWidth: 1,
-    borderColor: "#888",
-    borderRadius: 8,
+    borderColor: "#dadada",
+    borderRadius: 10,
     alignItems: "center",
     height: 48,
     overflow: "hidden",
   },
   countryPickerContainer: {
     borderRightWidth: 1,
-    borderColor: "#888",
+    borderColor: "#dadada",
     paddingHorizontal: 10,
+    backgroundColor: '#fff',
     height: "100%",
     justifyContent: "center",
   },
@@ -69,8 +73,9 @@ const styles = StyleSheet.create({
   input: {
     flex: 1,
     paddingHorizontal: 12,
-    fontSize: 16,
-    color: "#fff",
+    fontSize: 14,
+    color: "#000",
+    backgroundColor: '#fff',
     fontFamily: "SatoshiMedium",
     height: "100%",
   },

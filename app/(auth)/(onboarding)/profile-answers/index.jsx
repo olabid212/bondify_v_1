@@ -19,7 +19,7 @@ const ProfileAnswers = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -28,10 +28,10 @@ const ProfileAnswers = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-white mb-2">
+              <Text className="text-[25px] font-SatoshiBold text-app mb-2">
                 Write your profile answers
               </Text>
-              <Text className="text-white font-Satoshi">
+              <Text className="text-app font-Satoshi">
                 Select a prompt that excites you the list below and write your
                 answers
               </Text>
@@ -59,7 +59,7 @@ const ProfileAnswers = () => {
             </View>
 
             <View className="w-full items-end pb-6">
-              <NextButton variant="white" onPress={() => router.push("/root-tabs")} />
+              <NextButton variant="gradient" onPress={() => router.push("/root-tabs")} />
             </View>
           </View>
         </TouchableWithoutFeedback>

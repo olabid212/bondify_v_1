@@ -20,7 +20,7 @@ const Username = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -29,10 +29,10 @@ const Username = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-white mb-2">
+              <Text className="text-[25px] font-SatoshiBold text-app mb-2">
                 What is your name?
               </Text>
-              <Text className="text-white font-Satoshi">
+              <Text className="text-app font-Satoshi">
                 Let's Get to Know Each Other
               </Text>
               <View>
@@ -48,7 +48,7 @@ const Username = () => {
 
             <View className="w-full items-end pb-6">
               <NextButton
-                variant="white"
+                variant="gradient"
                 onPress={() => router.push("/age")}
               />
             </View>

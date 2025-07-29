@@ -25,7 +25,7 @@ module.exports = {
       },
       colors: {
         app: "#111111",
-        primary: "#A80EC1",
+        primary: "#FF0066",
         ash: "#888",
       },
     },

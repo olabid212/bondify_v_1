@@ -15,14 +15,14 @@ const ConfirmationScreen = ({title, subtitle}) => {
     <View className="flex-1 px-4">
       <View className="flex-1 justify-center  mt-32">
         <Image
-          source={require("../../assets/images/B-icon.png")}
+          source={require("../../assets/images/bondify-icon-color.png")}
           contentFit="contain"
           style={{ width: 100, height: 80, marginBottom: 10 }}
         />
-        <Text className="text-[50px] font-SatoshiBold text-white mb-2 leading-[55px] ">
+        <Text className="text-[50px] font-SatoshiBold  mb-2 leading-[55px] ">
           {title}
         </Text>
-        <Text className="mb-7 text-white font-SatoshiMedium">{subtitle}</Text>
+        <Text className="mb-7  font-SatoshiMedium">{subtitle}</Text>
       </View>
     </View>
   );

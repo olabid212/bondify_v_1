@@ -21,7 +21,7 @@ const Preference = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -30,10 +30,10 @@ const Preference = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-white mb-2">
+              <Text className="text-[25px] font-SatoshiBold text-app mb-2">
               What are you hoping to find on Bondify?
               </Text>
-              <Text className="text-white font-Satoshi">
+              <Text className="text-app font-Satoshi">
                 Provide us with further insights into your preferences
               
               </Text>
@@ -46,6 +46,7 @@ const Preference = () => {
                     { label: "A committed relationship", value: "relationship" },
                     { label: "Something Casual", value: "casual" },
                     { label: "Marriage", value: "marriage" },
+                    { label: "Finding a Date", value: "finding-a-date" },
                     { label: "I am not sure", value: "not-sure" },
                   ]}
                   className="mt-2"
@@ -56,8 +57,8 @@ const Preference = () => {
 
             <View className="w-full items-end pb-6">
               <NextButton
-                variant="white"
-                onPress={() => router.push("/about")}
+                variant="gradient"
+                onPress={() => router.push("/religion")}
               />
             </View>
           </View>

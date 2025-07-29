@@ -11,7 +11,7 @@ const Age = () => {
   const ages = Array.from({ length: 100 }, (_, i) => i + 1); // Age 1 - 100
 
     return (
-      <View className='bg-app flex-1'>
+      <View className='bg-white flex-1'>
         <View style={styles.container}>
           <Text style={styles.title}>How Old Are You?</Text>
           <Text style={styles.subtitle}>Please provide your age in years</Text>
@@ -29,7 +29,7 @@ const Age = () => {
           </View>
         </View>
         <View className="w-full items-end pb-6">
-          <NextButton variant="white" onPress={() => router.push("/gender")} />
+          <NextButton variant="gradient" onPress={() => router.push("/gender")} />
         </View>
       </View>
     );
@@ -42,16 +42,16 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
     alignItems: "center",
-    backgroundColor: "#111111",
+
   },
   title: {
     fontSize: 25,
     fontFamily: "SatoshiBold",
-    color: "#fff",
+    color: "#000",
   },
   subtitle: {
     fontSize: 14,
-    color: "#fff",
+    color: "#000",
     fontFamily: "Satoshi",
     marginBottom: 30,
   },
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     height: 200,
     fontFamily: "SatoshiBold",
-    color: "#fff",
+    color: "#000",
   },
   button: {
     marginTop: 30,

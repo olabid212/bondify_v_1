@@ -38,7 +38,7 @@ const Validation = () => {
 
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -48,10 +48,10 @@ const Validation = () => {
           <View className="flex-1 ">
 
             <View className="flex-1 mx-4 mt-8">
-              <Text className="text-2xl font-SatoshiBold text-white mb-2">
+              <Text className="text-2xl font-SatoshiBold text-black mb-2">
                 Enter verification code
               </Text>
-              <Text className="mb-7 text-white font-SatoshiMedium">
+              <Text className="mb-7 text-black font-SatoshiMedium">
                 Please enter verification code sent to your phone number
               </Text>
 
@@ -64,7 +64,7 @@ const Validation = () => {
             </View>
 
             <View className="w-full items-end px-2 pb-6">
-              <NextButton variant="white" onPress={() => router.push("/welcome")} />
+              <NextButton variant="gradient" onPress={() => router.push("/agreement")} />
             </View>
           </View>
         </TouchableWithoutFeedback>

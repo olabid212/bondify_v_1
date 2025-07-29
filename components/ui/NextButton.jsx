@@ -1,17 +1,34 @@
 import React from "react";
-import { Text, TouchableOpacity, ActivityIndicator, View } from "react-native";
+import { Text, TouchableOpacity, ActivityIndicator, View, StyleSheet } from "react-native";
 import Entypo from "@expo/vector-icons/Entypo";
+import { LinearGradient } from "expo-linear-gradient";
 
 const NextButton = ({
-  title = "", // Default to no text
+  title = "", 
   onPress,
   loading = false,
   disabled = false,
   className = "",
   variant = "primary",
   textClassName = "",
-  icon = <Entypo name="chevron-small-right" size={24} color="black" />, // Default icon
+  icon = <Entypo name="chevron-small-right" size={30} color="white" />, // Default icon
 }) => {
+    const renderContent = () =>
+      loading ? (
+        <ActivityIndicator color="#fff" />
+      ) : (
+        <View className="flex-row">
+          <Text
+            className={`text-xl font-SatoshiBold text-white ${textClassName}`}
+          >
+            {title}
+          </Text>
+          {icon}
+        </View>
+      );
+        
+      
+  
   const baseStyle =
     variant === "primary"
       ? "bg-primary"
@@ -35,6 +52,27 @@ const NextButton = ({
           : variant === "neutral"
             ? "text-[#1E4234]"
             : "text-white";
+  
+  
+    if (variant === "gradient") {
+      return (
+        <TouchableOpacity
+          onPress={onPress}
+          disabled={loading || disabled}
+          style={[styles.buttonWrapper, disabled && { opacity: 0.5 }]}
+        >
+          <LinearGradient
+            colors={["#FD465C", "#A80EC1"]}
+            start={{ x: 1, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.gradientButton}
+          >
+            {renderContent()}
+          </LinearGradient>
+        </TouchableOpacity>
+      );
+    }
+  
 
   return (
     <TouchableOpacity
@@ -61,5 +99,28 @@ const NextButton = ({
     </TouchableOpacity>
   );
 };
+
+
+
+
+
+
+const styles = StyleSheet.create({
+  buttonWrapper: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "flex-end",
+    borderRadius: 10,
+  },
+  gradientButton: {
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginBottom:10,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "auto",
+  },
+});
 
 export default NextButton;

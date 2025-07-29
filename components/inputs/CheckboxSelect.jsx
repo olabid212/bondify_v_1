@@ -31,10 +31,11 @@ const CheckboxSelect = ({
         {options.map((option) => (
           <TouchableOpacity
             key={option.value}
-            className={`flex-row items-center justify-between gap-2 h-14 px-4 rounded-xl border border-ash ${className}`}
+            className={`flex-row items-center justify-between gap-2  px-4 rounded-xl border border-[#dadada] ${className}`}
             onPress={() => toggleSelection(option.value)}
+            style={{ height: 50, borderRadius: 10 }}
           >
-            <Text className="text-white text-lg font-Satoshi">
+            <Text className="text-app text-lg font-SatoshiMedium">
               {option.label}
             </Text>
             <Ionicons

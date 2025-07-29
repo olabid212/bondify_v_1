@@ -22,7 +22,7 @@ const PhoneLogin = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -31,10 +31,10 @@ const PhoneLogin = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
-              <Text className="text-2xl font-SatoshiBold text-white mb-2">
+              <Text className="text-2xl font-SatoshiBold text-black mb-2">
                 My number is
               </Text>
-              <Text className="mb-7 text-white font-SatoshiMedium">
+              <Text className="mb-7 text-black font-SatoshiMedium">
                 We'll need your phone number to send an OTP for verification.
               </Text>
 
@@ -46,7 +46,7 @@ const PhoneLogin = () => {
 
             <View className="w-full items-end pb-6">
               <NextButton
-                variant="white"
+                variant="gradient"
                 onPress={() => router.push("/validation")}
               />
             </View>

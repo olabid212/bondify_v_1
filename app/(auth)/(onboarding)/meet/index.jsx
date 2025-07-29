@@ -23,7 +23,7 @@ const Meet = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -32,7 +32,7 @@ const Meet = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-white mb-2">
+              <Text className="text-[25px] font-SatoshiBold text-app mb-2">
                 I would like to meet
               </Text>
 
@@ -53,7 +53,7 @@ const Meet = () => {
 
             <View className="w-full items-end pb-6">
               <NextButton
-                variant="white"
+                variant="gradient"
                 onPress={() => router.push("/preference")}
               />
             </View>

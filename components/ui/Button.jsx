@@ -62,7 +62,7 @@ const Button = ({
     variant === "primary"
       ? "text-white"
       : variant === "white"
-        ? "text-primary"
+        ? "text-black"
         : variant === "secondary"
           ? "text-primary"
           : variant === "neutral"

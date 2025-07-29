@@ -23,19 +23,27 @@ const RadioSelect = ({
         {options.map((option) => (
           <TouchableOpacity
             key={option.value}
-            className={`flex-row items-center justify-between gap-2 h-14 px-4 rounded-xl border border-ash ${className} `}
+            className={`px-4 py-3 rounded-xl border border-[#dadada] ${className}`}
             onPress={() => onChange(option.value)}
+            style={{ borderRadius: 10 }}
           >
-            <Text className="text-white text-lg font-Satoshi">
-              {option.label}
-            </Text>
-            <Ionicons
-              name={
-                value === option.value ? "radio-button-on" : "radio-button-off"
-              }
-              size={20}
-              color={value === option.value ? "#A80EC1" : "#A4A4A4"} // blue-600
-            />
+            <View className="flex-row justify-between items-center">
+              <Text
+                className="text-app text-lg font-SatoshiMedium flex-1 pr-4"
+                style={{ flexWrap: "wrap" }}
+              >
+                {option.label}
+              </Text>
+              <Ionicons
+                name={
+                  value === option.value
+                    ? "radio-button-on"
+                    : "radio-button-off"
+                }
+                size={20}
+                color={value === option.value ? "#A80EC1" : "#A4A4A4"}
+              />
+            </View>
           </TouchableOpacity>
         ))}
       </View>

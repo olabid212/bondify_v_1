@@ -17,7 +17,7 @@ const Welcome = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
       <KeyboardAvoidingView
         className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
@@ -29,7 +29,7 @@ const Welcome = () => {
 
             <View className="w-full items-end pb-6 pr-4">
               <NextButton
-                variant="white"
+                variant="gradient"
                 title="Setup account"
                 onPress={() => router.push("/username")}
               />

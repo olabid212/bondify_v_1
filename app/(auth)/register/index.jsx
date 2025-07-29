@@ -1,12 +1,60 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import React from "react";
+import {
+  SafeAreaView,
+  Text,
+  View,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
+import GlobalPhoneInput from "../../../components/inputs/PhoneInput";
+import NextButton from "../../../components/ui/NextButton";
+import { useRouter } from "expo-router";
+import TextInput from "../../../components/inputs/TextInput"
 
 const Register = () => {
-  return (
-    <View>
-      <Text>Register</Text>
-    </View>
-  )
-}
+  
 
-export default Register
+  const router = useRouter();
+
+  return (
+    <SafeAreaView className="flex-1 bg-white">
+      <KeyboardAvoidingView
+        className="flex-1"
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={Platform.OS === "ios" ? 20 : 0}
+      >
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          <View className="flex-1 px-2">
+            <View className="flex-1 mt-8">
+              <Text className="text-2xl font-SatoshiBold text-black mb-2">
+                Create an account
+              </Text>
+              <Text className="mb-7 text-black font-Satoshi">
+                Find your perfec match with just a few steps sign up now and
+                join the millions of people finding love on Bondify
+              </Text>
+              <View className='gap-3'>
+                <GlobalPhoneInput
+                  onChangePhone={(phone) => console.log(phone)}
+                  onChangeCountry={(country) => console.log(country)}
+                />
+
+              </View>
+            </View>
+
+            <View className="w-full items-end pb-6">
+              <NextButton
+                variant="gradient"
+                onPress={() => router.push("/validation")}
+              />
+            </View>
+          </View>
+        </TouchableWithoutFeedback>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
+};
+
+export default Register;

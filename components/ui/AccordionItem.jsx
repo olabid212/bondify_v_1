@@ -27,21 +27,21 @@ const AccordionItem = ({ question, children }) => {
   };
 
   return (
-    <View className="mb-3 bg-white/10 px-4 py-3 rounded-xl">
+    <View className="mb-3 bg-[#f1f1f1] px-4 py-3 rounded-xl">
       <TouchableOpacity
         onPress={toggleOpen}
         className="flex-row justify-between items-center"
       >
-        <Text className="text-white w-[300px] font-SatoshiMedium text-base">
+        <Text className="text-app w-[300px] font-SatoshiMedium text-base">
           {question}
         </Text>
         <Feather
           name={open ? "chevron-up" : "chevron-down"}
           size={20}
-          color={"#fff"}
+          color={"#000"}
         />
       </TouchableOpacity>
-      {open && <View className="mt-2">{children}</View>}
+      {open && <View className="mt-2 text-app">{children}</View>}
     </View>
   );
 };

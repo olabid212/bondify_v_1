@@ -86,9 +86,9 @@ const GlobalOtpInput = ({ touched, errors, onTextChange, onFocus }) => {
         <Text className="text-red-500 ml-2 mt-2 text-sm">{errors}</Text>
       )}
 
-      <View className="flex-row text-white justify-center mt-4">
+      <View className="flex-row text-app justify-center mt-4">
         {timer > 0 ? (
-          <Text className=" text-white font-SatoshiMedium text-sm">{timer} sec remaining</Text>
+          <Text className=" text-app font-SatoshiMedium text-sm">{timer} sec remaining</Text>
         ) : (
           <TouchableOpacity onPress={handleResend}>
             <Text className="text-primary font-medium text-sm">
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
   },
   pinCodeText: {
     fontSize: 24,
-    color: "#fff",
+    color: "#000",
     fontFamily: "Satoshi",
   },
 });

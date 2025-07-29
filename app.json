@@ -4,7 +4,7 @@
     "slug": "bondify",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/B-icon.png",
+    "icon": "./assets/images/bondify-icon-color.png",
     "scheme": "bondify",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/B-icon.png",
+        "foregroundImage": "./assets/images/bondify-icon-color.png",
         "backgroundColor": "#111111"
       },
       "edgeToEdgeEnabled": true
@@ -21,14 +21,14 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/B-icon.png"
+      "favicon": "./assets/images/bondify-icon-color.png"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/B-icon.png",
+          "image": "./assets/images/bondify-icon-color.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#111111"

@@ -43,7 +43,7 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView>
-      <StatusBar barStyle="light-content" />
+      <StatusBar barStyle="dark-content" />
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="index" />
         <Stack.Screen name="(root)" />

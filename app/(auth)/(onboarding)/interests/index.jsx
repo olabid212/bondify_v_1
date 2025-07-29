@@ -75,12 +75,12 @@ const Interests = () => {
 
   return (
     <SafeAreaProvider>
-    <SafeAreaView className="flex-1 bg-app">
+    <SafeAreaView className="flex-1 bg-white">
    
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-3">
             <View className="mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-white mb-4">
+              <Text className="text-[25px] font-SatoshiBold text-app mb-4">
                 What are your interests?
               </Text>
 
@@ -103,7 +103,7 @@ const Interests = () => {
             >
               {INTEREST_CATEGORIES.map((category) => (
                 <View key={category.title} className="mb-6">
-                  <Text className="text-white font-SatoshiBold text-base mb-3">
+                  <Text className="text-app font-SatoshiBold text-base mb-3">
                     {category.title}
                   </Text>
                   <View className="flex-row flex-wrap gap-2">
@@ -113,15 +113,15 @@ const Interests = () => {
                         <TouchableOpacity
                           key={interest}
                           onPress={() => toggleInterest(interest)}
-                          className={`px-4 py-2 rounded-full ${
+                          className={` px-4 py-2 rounded-full ${
                             selected
-                              ? "border border-primary bg-app text-white"
-                              : "bg-gray-400/20"
+                              ? "border border-primary bg-primary font-SatoshiMedium text-white"
+                              : "bg-[#f1f1f1]"
                           }`}
                         >
                           <Text
-                            className={`font-Satoshi ${
-                              selected ? "text-white" : "text-white"
+                            className={`font-SatoshiMedium ${
+                              selected ? "text-white" : "text-app"
                             }`}
                           >
                             {interest}
@@ -136,7 +136,7 @@ const Interests = () => {
 
             <View className="w-full items-end pb-6">
               <NextButton
-                variant="white"
+                variant="gradient"
                 onPress={() => {
                   // You can handle selectedInterests here before moving
                   router.push("/upload-photo");

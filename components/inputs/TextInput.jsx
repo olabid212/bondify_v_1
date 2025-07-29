@@ -30,12 +30,14 @@ const TextInput = ({
       {label && (
         <Text className="text-lg  font-SatoshiMedium mb-2">{label}</Text>
       )}
-      <View className={`flex-row items-center h-14 px-4 rounded-xl border border-ash ${className} `}>
-
+      <View
+        className={`flex-row items-center  px-4 border bg-white border-[#dadada] ${className} `}
+        style={{ height: 50, borderRadius: 10 }}
+      >
         <RNTextInput
-          className="flex-1 text-white font-SatoshiMedium "
+          className="flex-1 text-app  bg-white font-SatoshiMedium "
           placeholder={placeholder}
-          placeholderTextColor="#A4A4A4"
+          placeholderTextColor="#ccc"
           autoCapitalize="none"
           secureTextEntry={secureTextEntry && !isPasswordVisible}
           keyboardType={keyboardType}

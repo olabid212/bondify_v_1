@@ -15,7 +15,7 @@ const ActionButtons = ({ onSwipe, onSuperLike }) => (
 
     {/* Superlike Button with Gradient */}
     <LinearGradient
-              colors={['#FEE140', '#FA709A']}
+      colors={["#FD465C", "#A80EC1"]}
       start={{ x: 0, y: 0 }}
       end={{ x: 1, y: 1 }}
       style={{
@@ -50,7 +50,7 @@ const ActionButtons = ({ onSwipe, onSuperLike }) => (
       onPress={() => onSwipe("right")}
       className="w-14 h-14 bg-white rounded-full items-center justify-center shadow-md"
     >
-      <Heart color="red" size={28} fill="red" />
+      <Heart color="#FD465C" size={28} fill="#FD465C" />
     </TouchableOpacity>
   </View>
 );

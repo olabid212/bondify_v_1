@@ -53,7 +53,7 @@ const Status = () => {
             </View>
           ) : (
             <LinearGradient
-              colors={['#FEE140', '#FA709A']}
+              colors={["#A80EC1", "#1D01FD"]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 1 }}
               style={styles.gradientBorder}
@@ -89,7 +89,7 @@ export default Status;
 const styles = StyleSheet.create({
   container: {
     paddingLeft: 16,
-    backgroundColor: "#111",
+    marginBottom: 10
   },
   itemContainer: {
     marginRight: 16,
