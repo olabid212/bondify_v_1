@@ -1,23 +1,50 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import React from "react";
-import { Stack } from "expo-router";
+import { Stack, useSegments } from "expo-router";
+import { SafeAreaView } from "react-native-safe-area-context";
+import AccountSetupHeader from "../../../components/headers/SetupAccountHeader";
+import { ProgressBar } from "../../../components/ui/ProgressBar";
 
 export default function OnboardingLayout() {
+  const segments = useSegments(); // example: ['auth', '(onboarding)', 'gender']
+  const currentStep = segments[segments.length - 1];
+
+  const steps = [
+    "agreement",
+    "username",
+    "age",
+    "height",
+    "gender",
+    "meet",
+    "marital-status",
+    "kids",
+    "preference",
+    "religion",
+    "religion-question",
+    "education",
+    "occupation",
+    "smoke",
+    "drink",
+    "about",
+    "interests",
+    "upload-photo",
+    "profile-answers",
+  ];
+
+  const currentIndex = steps.indexOf(currentStep);
+  const progress = (currentIndex + 1) / steps.length;
+
   return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="about" />
-      <Stack.Screen name="gender" />
-      <Stack.Screen name="interests" />
-      <Stack.Screen name="meet" />
-      <Stack.Screen name="username" />
-      <Stack.Screen name="preference" />
-      <Stack.Screen name="age" />
-      <Stack.Screen name="upload-photo" />
-      <Stack.Screen name="questions" />
-      <Stack.Screen name="profile-answers" />
-      <Stack.Screen name="agreement" />
-      <Stack.Screen name="religion" />
-      <Stack.Screen name="religion-question" />
-    </Stack>
+    <View className="flex-1 bg-white">
+      <AccountSetupHeader title="Account Setup" />
+      {steps.includes(currentStep) && <ProgressBar progress={progress} />}
+
+      <Stack screenOptions={{ headerShown: false }}>
+        {steps.map((step) => (
+          <Stack.Screen key={step} name={step} />
+        ))}
+        <Stack.Screen name="location" />
+      </Stack>
+    </View>
   );
 }

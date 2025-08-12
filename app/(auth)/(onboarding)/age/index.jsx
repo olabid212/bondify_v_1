@@ -1,38 +1,116 @@
-import React, { useState } from "react";
-import { View, Text, StyleSheet, Button, Platform } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { Picker } from "@react-native-picker/picker";
 import NextButton from "../../../../components/ui/NextButton";
 import { useRouter } from "expo-router";
+import Info from "../../../../components/ui/Info";
+
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const getDaysInMonth = (year, month) => {
+  return new Date(year, month + 1, 0).getDate();
+};
+
+const calculateAge = (dob) => {
+  const today = new Date();
+  let age = today.getFullYear() - dob.getFullYear();
+  const m = today.getMonth() - dob.getMonth();
+
+  if (m < 0 || (m === 0 && today.getDate() < dob.getDate())) {
+    age--;
+  }
+  return age;
+};
 
 const Age = () => {
-    const [selectedAge, setSelectedAge] = useState(25);
-    const router = useRouter()
+  const router = useRouter();
+  const currentYear = new Date().getFullYear();
+  const years = Array.from({ length: 100 }, (_, i) => currentYear - i); 
 
-  const ages = Array.from({ length: 100 }, (_, i) => i + 1); // Age 1 - 100
+  const [selectedDay, setSelectedDay] = useState(5);
+  const [selectedMonth, setSelectedMonth] = useState(0); 
+  const [selectedYear, setSelectedYear] = useState(currentYear - 25);
+  const [age, setAge] = useState(null);
 
-    return (
-      <View className='bg-white flex-1'>
-        <View style={styles.container}>
-          <Text style={styles.title}>How Old Are You?</Text>
-          <Text style={styles.subtitle}>Please provide your age in years</Text>
+  useEffect(() => {
+    const dob = new Date(selectedYear, selectedMonth, selectedDay);
+    const calculatedAge = calculateAge(dob);
+    setAge(calculatedAge);
+  }, [selectedDay, selectedMonth, selectedYear]);
 
-          <View style={styles.pickerWrapper}>
-            <Picker
-              selectedValue={selectedAge}
-              onValueChange={(itemValue) => setSelectedAge(itemValue)}
-              itemStyle={styles.pickerItem}
-            >
-              {ages.map((age) => (
-                <Picker.Item key={age} label={String(age)} value={age} />
-              ))}
-            </Picker>
-          </View>
+  const days = Array.from(
+    { length: getDaysInMonth(selectedYear, selectedMonth) },
+    (_, i) => i + 1
+  );
+
+  return (
+    <View className="bg-white flex-1">
+      <View style={styles.container}>
+        <Text style={styles.title}>Whats your date of birth?</Text>
+        <Text style={styles.subtitle}>
+          We’ll use this to calculate your age
+        </Text>
+
+        <View style={styles.pickerRow}>
+          {/* Day Picker */}
+          <Picker
+            selectedValue={selectedDay}
+            style={styles.picker}
+            onValueChange={(value) => setSelectedDay(value)}
+          >
+            {days.map((day) => (
+              <Picker.Item key={day} label={String(day)} value={day} />
+            ))}
+          </Picker>
+
+          {/* Month Picker */}
+          <Picker
+            selectedValue={selectedMonth}
+            style={styles.picker}
+            onValueChange={(value) => setSelectedMonth(value)}
+          >
+            {months.map((month, index) => (
+              <Picker.Item key={index} label={month} value={index} />
+            ))}
+          </Picker>
+
+          {/* Year Picker */}
+          <Picker
+            selectedValue={selectedYear}
+            style={styles.picker}
+            onValueChange={(value) => setSelectedYear(value)}
+          >
+            {years.map((year) => (
+              <Picker.Item key={year} label={String(year)} value={year} />
+            ))}
+          </Picker>
         </View>
-        <View className="w-full items-end pb-6">
-          <NextButton variant="gradient" onPress={() => router.push("/gender")} />
+
+        {age !== null && <Text style={styles.ageText}>Age: {age} years old</Text>}
+
+        <View className='mt-3'>
+          <Info title="This can't be changed later" />
         </View>
       </View>
-    );
+
+      <View className="w-full items-end pb-6">
+        <NextButton variant="gradient" onPress={() => router.push("/height")} />
+      </View>
+    </View>
+  );
 };
 
 export default Age;
@@ -42,7 +120,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
     alignItems: "center",
-
   },
   title: {
     fontSize: 25,
@@ -55,22 +132,21 @@ const styles = StyleSheet.create({
     fontFamily: "Satoshi",
     marginBottom: 30,
   },
-  pickerWrapper: {
+  pickerRow: {
+    flexDirection: "row",
     width: "100%",
-    height: 200,
-    justifyContent: "center",
-    backgroundColor: "transparent",
+    justifyContent: "space-evenly",
   },
-  pickerItem: {
-    fontSize: 30,
-    height: 200,
+  picker: {
+    width: "30%",
+    backgroundColor: "#fff",
+    color: "#333",
+    height: Platform.OS === "ios" ? 180 : 50,
+  },
+  ageText: {
+    marginTop: 60,
+    fontSize: 20,
     fontFamily: "SatoshiBold",
-    color: "#000",
-  },
-  button: {
-    marginTop: 30,
-    width: "80%",
-    borderRadius: 30,
-    overflow: "hidden",
+    color: "#333",
   },
 });

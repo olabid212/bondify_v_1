@@ -26,16 +26,16 @@ const TextInput = ({
   const togglePassword = () => setIsPasswordVisible(!isPasswordVisible);
 
   return (
-    <View className="mb-4 w-full">
+    <View className="mb-2 w-full">
       {label && (
         <Text className="text-lg  font-SatoshiMedium mb-2">{label}</Text>
       )}
       <View
         className={`flex-row items-center  px-4 border bg-white border-[#dadada] ${className} `}
-        style={{ height: 50, borderRadius: 10 }}
+        style={{ height: 50, borderRadius: 10, marginBottom: 10 }}
       >
         <RNTextInput
-          className="flex-1 text-app  bg-white font-SatoshiMedium "
+          className="flex-1 text-app   bg-white font-SatoshiMedium "
           placeholder={placeholder}
           placeholderTextColor="#ccc"
           autoCapitalize="none"

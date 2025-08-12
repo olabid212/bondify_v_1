@@ -4,7 +4,7 @@ import { Stack } from 'expo-router'
 
 export default function TabsLayout() {
   return (
-    <View className='bg-app flex-1 px-4'>
+    <View className='bg-app flex-1 '>
       <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="home" />
         <Stack.Screen name="chats" />

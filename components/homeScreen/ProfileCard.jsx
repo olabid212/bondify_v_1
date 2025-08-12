@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+  TouchableWithoutFeedback,
+  Pressable,
+} from "react-native";
 import { Image } from "expo-image";
 import {
   Star,
+  ChevronLeft ,
   MapPin,
   Briefcase,
   GraduationCap,
@@ -13,14 +21,39 @@ import {
   Dumbbell,
   Info,
   User,
+  Baby,
   Sparkles,
 } from "lucide-react-native";
 import { colors } from "../../constant/colors";
+import { useRouter } from "expo-router";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import { ScrollView } from "react-native-gesture-handler";
 
 const MAX_BIO_LENGTH = 120;
+const { width } = Dimensions.get("window");
 
 const ProfileCard = ({ profile }) => {
   const [showFullBio, setShowFullBio] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const totalImages = profile?.images?.length || 1;
+  const router = useRouter();
+
+  const goNext = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % totalImages);
+  };
+
+  const goPrev = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + totalImages) % totalImages);
+  };
+
+  const handlePress = (e) => {
+    const pressX = e.nativeEvent.locationX;
+    if (pressX > width / 2) {
+      goNext();
+    } else {
+      goPrev();
+    }
+  };
 
   if (!profile) return null;
 
@@ -30,213 +63,340 @@ const ProfileCard = ({ profile }) => {
     : profile.bio?.slice(0, MAX_BIO_LENGTH) + (isBioLong ? "..." : "");
 
   return (
-    <View className="py-6">
-      <View className="rounded-3xl shadow-lg overflow-hidden bg-white">
-        <View className="relative h-[500px] w-full">
-          {/* Image */}
-          <Image
-            source={{ uri: profile?.images?.[0] }}
-            className="w-full h-full"
-            contentFit="cover"
-            style={{ borderRadius: 24 }}
-          />
+    <View className="relative ">
+      {/* Fixed Back Icon */}
+      <Pressable
+        className="absolute top-16 left-6 bg-black/40 rounded-full p-3 z-50"
+        onPress={() => router.back()}
+      >
+        <ChevronLeft color="white" size={20} />
+      </Pressable>
+      <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
+        <View className="">
+          <View className=" shadow-lg overflow-hidden bg-white">
+            <TouchableWithoutFeedback onPress={handlePress}>
+              <View className="relative h-[600px] w-full">
+                <Image
+                  source={{ uri: profile?.images?.[currentImageIndex] }}
+                  className="w-full h-full"
+                  contentFit="cover"
+                />
 
-          {/* Dark Overlay */}
-          <View className="absolute inset-0 bg-black/30 rounded-3xl" />
+                <View className="absolute inset-0 bg-black/20 rounded-b-3xl" />
 
-          {/* Verified Badge */}
-          {profile.verified && (
-            <View className="absolute top-4 right-4 bg-blue-500 rounded-full p-2">
-              <Star color="white" size={16} fill="white" />
-            </View>
-          )}
+                <View className="absolute bottom-6 left-6 right-6">
+                  <View className="flex-row items-center mb-2">
+                    <Text className="text-white text-3xl font-SatoshiBold mr-2">
+                      {profile.name}
+                    </Text>
+                    <Text className="text-white text-3xl font-Satoshi">
+                      {profile.age}
+                    </Text>
+                  </View>
 
-          {/* Name, Age, Education, Occupation */}
-          <View className="absolute bottom-6 left-6 right-6">
-          
-            <View className="flex-row items-center mb-2">
-              <Text className="text-white text-3xl font-SatoshiBold mr-2">
-                {profile.name}
-              </Text>
-              <Text className="text-white text-3xl font-Satoshi">
-                {profile.age}
-              </Text>
-            </View>
+                  <View className="flex-row items-center flex-wrap gap-x-6 gap-y-2">
+                    {profile.occupation && (
+                      <View className="flex-row items-center">
+                        <Briefcase size={16} color="white" />
+                        <Text className="text-white font-SatoshiMedium ml-2 capitalize">
+                          {profile.occupation}
+                        </Text>
+                      </View>
+                    )}
 
-            <View className="flex-row items-center flex-wrap gap-x-6 gap-y-2">
-              {profile.education && (
-                <View className="flex-row items-center">
-                  <GraduationCap size={16} color="white" />
-                  <Text className="text-white font-SatoshiMedium ml-2">
-                    {profile.education}
-                  </Text>
+                    {profile.education && (
+                      <View className="flex-row items-center">
+                        <GraduationCap size={16} color="white" />
+                        <Text className="text-white font-SatoshiMedium ml-2">
+                          {profile.education}
+                        </Text>
+                      </View>
+                    )}
+                  </View>
                 </View>
-              )}
-
-              {profile.occupation && (
-                <View className="flex-row items-center">
-                  <Briefcase size={16} color="white" />
-                  <Text className="text-white font-SatoshiMedium ml-2 capitalize">
-                    {profile.occupation}
-                  </Text>
-                </View>
-              )}
-            </View>
+              </View>
+            </TouchableWithoutFeedback>
           </View>
-        </View>
-      </View>
 
-      {/* Looking for */}
-      <View className="py-6">
-        <View className="bg-white/5 rounded-xl p-4 mb-4">
-          <View className="flex-row items-center mb-2">
-            <User size={18} color="white" />
-            <Text className="text-lg font-SatoshiMedium text-white ml-2">
-              Looking for
-            </Text>
-          </View>
-          <Text className="text-xl font-SatoshiBold text-white">
-            {profile.lookingFor}
-          </Text>
-        </View>
-
-        {/* About me */}
-        {profile.bio && (
-          <View className="bg-white/5 border-[0.5px] border-gray-800 mb-5 p-6 rounded-2xl">
-            <View className="flex-row items-center mb-3">
-              <Info size={18} color="white" />
-              <Text className="text-lg font-SatoshiBold text-white ml-2">
-                About me
-              </Text>
-            </View>
-            <Text className="text-white font-Satoshi text-base">
-              {displayedBio}
-            </Text>
-            {isBioLong && (
-              <TouchableOpacity onPress={() => setShowFullBio(!showFullBio)}>
-                <Text className="text-primary mt-1 font-medium">
-                  {showFullBio ? "Show less" : "Read more"}
+          <View className="py-6 px-2">
+            {/* Mutual Connections */}
+            {profile.mutualFriends > 0 && (
+              <View className="bg-white rounded-2xl p-4 mb-4">
+                <Text className="text-app text-[20px] font-SatoshiMedium">
+                  Shared interests
                 </Text>
-              </TouchableOpacity>
+
+                {profile.mutualInterests.length > 0 && (
+                  <View className="flex flex-row flex-wrap gap-2 mt-2">
+                    {profile.mutualInterests.map((interest, index) => (
+                      <View
+                        key={index}
+                        className="bg-white border-[0.4px] border-gray-300 px-4 py-2 rounded-full"
+                      >
+                        <Text className="text-black text-[16px] font-Satoshi">
+                          {interest}
+                        </Text>
+                      </View>
+                    ))}
+                  </View>
+                )}
+              </View>
             )}
-          </View>
-        )}
 
-      
-        {/* Essentials */}
-        <View className="bg-white/5 border-[0.5px] border-gray-800 p-6 mb-5 rounded-2xl">
-          <View className="flex-row items-center mb-2">
-            <Info size={18} color="white" />
-            <Text className="text-lg font-SatoshiBold text-white ml-2">
-              Essentials
-            </Text>
-          </View>
+            {/* Looking For */}
+            {profile.lookingFor && (
+              <View className="bg-white rounded-2xl p-4 mb-4">
+                <View className="flex-row items-center mb-2">
+                  <Text className="text-[20px] font-SatoshiMedium text-app">
+                    Looking for
+                  </Text>
+                </View>
 
-          <View className="flex-row items-center mt-4 gap-3">
-            <MapPin color={colors.primary} size={16} />
-            <Text className="text-white">{profile.distance || "5km away"}</Text>
-          </View>
-          <View className="flex-row items-center gap-3 mt-4">
-            <Briefcase color={colors.primary} size={16} />
-            <Text className="text-white capitalize">{profile.occupation}</Text>
-          </View>
+                <View className="self-start bg-white items-center justify-center border border-gray-300 px-5 py-2 rounded-full">
+                  <Text className="text-black text-[16px] font-Satoshi">
+                    {profile.lookingFor}
+                  </Text>
+                </View>
+              </View>
+            )}
 
-          <View className="flex-row items-center gap-3 mt-4">
-            <Ruler color={colors.primary} size={16} />
-            <Text className="text-white  capitalize">{profile.height}</Text>
-          </View>
+            {/* Bio */}
+            {profile.bio && (
+              <View className="bg-white  mb-5 p-6 rounded-2xl">
+                <View className="flex-row items-center mb-3">
+                  <Text className="text-[20px] font-SatoshiMedium text-app">
+                    Bio
+                  </Text>
+                </View>
+                <Text className="text-app font-Satoshi text-[16px] ">
+                  {displayedBio}
+                </Text>
+                {isBioLong && (
+                  <TouchableOpacity
+                    onPress={() => setShowFullBio(!showFullBio)}
+                  >
+                    <Text className="text-primary mt-1 font-medium">
+                      {showFullBio ? "Show less" : "Read more"}
+                    </Text>
+                  </TouchableOpacity>
+                )}
+              </View>
+            )}
 
-          <View className="flex-row items-center gap-3 mt-4">
-            <Wine color={colors.primary} size={16} />
-            <Text className="text-white  capitalize">{profile.drinking}</Text>
-          </View>
+            {/* Essentials */}
+            <View className="bg-white p-6 mb-5 rounded-2xl">
+              <View className="flex-row items-center mb-4">
+                <Text className="text-[20px] font-SatoshiMedium text-app ml-2">
+                  About me
+                </Text>
+              </View>
 
-          <View className="flex-row items-center gap-3 mt-4">
-            <Cigarette color={colors.primary} size={16} />
-            <Text className="text-white  capitalize">{profile.smoking}</Text>
-          </View>
+              {/* Two-column grid layout */}
+              <View className="flex-row flex-wrap -mx-1.5">
+                {profile.distance && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <MapPin color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">
+                        {profile.distance}
+                      </Text>
+                    </View>
+                  </View>
+                )}
 
-          <View className="flex-row items-center gap-3 mt-4">
-            <Dog color={colors.primary} size={16} />
-            <Text className="text-white  capitalize">{profile.pets}</Text>
-          </View>
+                {profile.occupation && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Briefcase color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">
+                        {profile.occupation}
+                      </Text>
+                    </View>
+                  </View>
+                )}
 
-          <View className="flex-row items-center gap-3 mt-4">
-            <Dumbbell color={colors.primary} size={16} />
-            <Text className="text-white  capitalize">{profile.exercise}</Text>
-          </View>
-        </View>
+                {profile.height && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Ruler color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">{profile.height}</Text>
+                    </View>
+                  </View>
+                )}
 
+                {profile.religion && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <MaterialCommunityIcons
+                        name="hands-pray"
+                        size={24}
+                        color={colors.primary}
+                      />
+                      <Text className="text-app text-lg">
+                        {profile.religion}
+                      </Text>
+                    </View>
+                  </View>
+                )}
 
-        
+                {profile.drinking && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Wine color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">
+                        {profile.drinking}
+                      </Text>
+                    </View>
+                  </View>
+                )}
 
-        {/* Education */}
-        {profile.school && (
-          <View className="bg-white/5 border-[0.5px] border-gray-800 mb-5 p-6 rounded-2xl">
-            <View className="flex-row items-center mb-3">
-              <GraduationCap size={18} color="white" />
-              <Text className="text-lg font-SatoshiBold text-white ml-2">
-                Education
-              </Text>
+                {profile.smoking && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Cigarette color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">
+                        {profile.smoking}
+                      </Text>
+                    </View>
+                  </View>
+                )}
+
+                {profile.children && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Baby color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">
+                        {profile.children}
+                      </Text>
+                    </View>
+                  </View>
+                )}
+
+                {profile.pets && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Dog color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">{profile.pets}</Text>
+                    </View>
+                  </View>
+                )}
+
+                {profile.exercise && (
+                  <View className="w-1/2 px-1.5 mb-3">
+                    <View className="bg-gray-100 rounded-lg p-3 flex-row items-center gap-3">
+                      <Dumbbell color={colors.primary} size={20} />
+                      <Text className="text-app text-lg">
+                        {profile.exercise}
+                      </Text>
+                    </View>
+                  </View>
+                )}
+              </View>
             </View>
-            <Text className="text-white font-Satoshi text-base">
-              {profile.school}
-            </Text>
-          </View>
-        )}
 
-        {/* Questions and Answer */}
-        {profile.questions?.length > 0 && (
-          <>
-            {profile.questions.map((item, index) => (
-              <View
-                key={index}
-                className="bg-white/5 border-[0.5px] border-gray-800 mb-4 p-5 rounded-2xl"
-              >
-                <Text className="text-white font-SatoshiMedium text-base mb-2">
-                  {item.question}
-                </Text>
-                <Text className="text-white font-SatoshiBold text-2xl leading-relaxed">
-                  {item.answer}
+            <View className="relative h-[500px] w-full mb-4">
+              <Image
+                source={{ uri: profile?.images?.[1] }}
+                className="w-full h-full"
+                contentFit="cover"
+              />
+
+              <View className="absolute inset-0 bg-black/20 rounded-3xl" />
+            </View>
+
+            {/* Education */}
+            {profile.school && (
+              <View className="bg-white  mb-5 p-6 rounded-2xl">
+                <View className="flex-row items-center mb-3">
+                  <Text className="text-[20px] font-SatoshiMedium text-app">
+                    Education
+                  </Text>
+                </View>
+                <Text className="text-app font-Satoshi text-base">
+                  {profile.school}
                 </Text>
               </View>
-            ))}
-          </>
-        )}
+            )}
 
-        {/* Interests */}
-        <View className="mb-6 bg-white/5 border-[0.5px] border-gray-800  p-6 rounded-2xl">
-          <View className="flex-row items-center mb-3">
-            <Sparkles size={18} color="white" />
-            <Text className="text-lg font-SatoshiBold text-white ml-2">
-              Interests
-            </Text>
-          </View>
-          <View className="flex-row flex-wrap">
-            {profile.interests.map((interest, index) => (
-              <View
-                key={index}
-                className={`rounded-full px-4 py-2 mr-2 mb-2 ${
-                  profile.mutualInterests.includes(interest)
-                    ? "bg-pink-50 border border-primary"
-                    : "bg-gray-100"
-                }`}
-              >
-                <Text
-                  className={`font-SatoshiMedium ${
-                    profile.mutualInterests.includes(interest)
-                      ? "text-primary"
-                      : "text-gray-700"
-                  }`}
+            {/* Questions */}
+            {profile.questions?.length > 0 &&
+              profile.questions.map((item, index) => (
+                <View
+                  key={index}
+                  className="bg-white mb-4 p-5 rounded-2xl"
                 >
-                  {interest}
-                  {profile.mutualInterests.includes(interest) && " ✨"}
+                  <Text className="text-app font-Satoshi text-base mb-2">
+                    {item.question}
+                  </Text>
+                  <Text className="text-app font-SatoshiBold text-2xl leading-relaxed">
+                    {item.answer}
+                  </Text>
+                </View>
+              ))}
+
+            <View className="relative h-[500px] w-full mb-4">
+              <Image
+                source={{ uri: profile?.images?.[2] }}
+                className="w-full h-full"
+                contentFit="cover"
+              />
+
+              <View className="absolute inset-0 bg-black/20 rounded-3xl" />
+            </View>
+
+            {/* Interests */}
+            {profile.interests?.length > 0 && (
+              <View className="mb-6 bg-white  p-6 rounded-2xl">
+                <View className="flex-row items-center mb-3">
+                  <Text className="text-[20px] font-SatoshiMedium text-app">
+                    Interests
+                  </Text>
+                </View>
+                <View className="flex-row flex-wrap">
+                  {profile.interests.map((interest, index) => (
+                    <View
+                      key={index}
+                      className={`rounded-full border px-4 py-2 mr-2 mb-2 ${
+                        profile.mutualInterests?.includes(interest)
+                          ? "bg-pink-50 border border-primary"
+                          : "bg-white border-[#D1D1D1]"
+                      }`}
+                    >
+                      <Text
+                        className={`font-SatoshiMedium ${
+                          profile.mutualInterests?.includes(interest)
+                            ? "text-primary"
+                            : "text-gray-700"
+                        }`}
+                      >
+                        {interest}
+                        {profile.mutualInterests?.includes(interest) && " ✨"}
+                      </Text>
+                    </View>
+                  ))}
+                </View>
+              </View>
+            )}
+            <View className="gap-3">
+              <View className="w-full py-5 bg-white justify-center items-center rounded-2xl">
+                <Text className="text-xl font-SatoshiBold">
+                  Share {profile.name}{" "}
                 </Text>
               </View>
-            ))}
+              <View className="w-full py-5 bg-white justify-center items-center rounded-2xl">
+                <Text className="text-xl font-SatoshiBold">
+                  Block {profile.name}{" "}
+                </Text>
+              </View>
+              <View className="w-full py-5 bg-white  justify-center items-center rounded-2xl">
+                <Text className="text-xl text-red-600 font-SatoshiBold">
+                  Report {profile.name}{" "}
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   );
 };

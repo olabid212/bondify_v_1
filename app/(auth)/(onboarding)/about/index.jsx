@@ -12,6 +12,8 @@ import {
 import NextButton from "../../../../components/ui/NextButton";
 import { useRouter } from "expo-router";
 import Info from "../../../../components/ui/Info";
+import { Video, Mic } from "lucide-react-native";
+
 
 const About = () => {
   const [aboutText, setAboutText] = useState("");
@@ -27,8 +29,8 @@ const About = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-3">
             <View className="flex-1 mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-app mb-2">
-                Write a small intro about yourself
+              <Text className="text-[25px] font-SatoshiBold text-app mb-4">
+                Tell us a little about yourself
               </Text>
 
               <TextInput
@@ -47,6 +49,39 @@ const About = () => {
                   fontSize: 16,
                 }}
               />
+
+              <View className="mt-4 p-4 rounded-2xl ">
+                <Text className="text-center text-xl font-SatoshiMedium">
+                  Or you can answer with
+                </Text>
+
+                <View className="flex-row  justify-between items-center p-5 rounded-lg mt-4">
+                  <View className="bg-pink-50 p-8 rounded-lg flex-row items-center gap-3 relative">
+                    <Video color="#FF0066" />
+                    <Text className="text-2xl font-SatoshiMedium">Video</Text>
+
+                    <View className="absolute bottom-[70px] ">
+                      <Text className="bg-primary py-1 px-3 text-xs text-white rounded-s-full rounded-se-full font-SatoshiBold">
+                        Recommended
+                      </Text>
+                    </View>
+                  </View>
+                  <View className="bg-pink-50 p-8 rounded-lg flex-row items-center gap-3">
+                    <Mic color="#FF0066" />
+                    <Text className="text-2xl font-SatoshiMedium">Audio</Text>
+                  </View>
+                </View>
+                <View className="mt-3 p-4 bg-pink-50 border-[0.2px] border-primary rounded-lg flex-row items-center gap-3">
+                  <View className="w-10 h-10 bg-primary justify-center items-center rounded-full">
+                    <Video size={20} color="white" />
+                  </View>
+
+                  <Text className="text-lg font-SatoshiMedium flex-1">
+                    Answering with a video will boost your profile visibility
+                    and help you find a relationship faster
+                  </Text>
+                </View>
+              </View>
             </View>
 
             <View className="w-full items-end pb-6">

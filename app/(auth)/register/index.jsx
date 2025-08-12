@@ -31,16 +31,24 @@ const Register = () => {
               <Text className="text-2xl font-SatoshiBold text-black mb-2">
                 Create an account
               </Text>
-              <Text className="mb-7 text-black font-Satoshi">
-                Find your perfec match with just a few steps sign up now and
+              <Text className="mb-7 text-black text-lg font-Satoshi">
+                Find your perfect match with just a few steps sign up now and
                 join the millions of people finding love on Bondify
               </Text>
-              <View className='gap-3'>
+              <View className="">
                 <GlobalPhoneInput
                   onChangePhone={(phone) => console.log(phone)}
                   onChangeCountry={(country) => console.log(country)}
                 />
-
+                <TextInput
+                  placeholder="Enter your email address"
+                  className=""
+                />
+                <TextInput placeholder="Create your password" secureTextEntry />
+                <TextInput
+                  placeholder="Confirm your password"
+                  secureTextEntry
+                />
               </View>
             </View>
 

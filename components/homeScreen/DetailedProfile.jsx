@@ -257,20 +257,6 @@ export default function DetailedProfile() {
             <Text className="text-gray-600 ml-2">{profileData.distance}</Text>
           </View>
 
-          {/* Mutual Connections */}
-          {profileData.mutualFriends > 0 && (
-            <View className="bg-pink-50 rounded-xl p-4 mb-4">
-              <Text className="text-pink-700 font-medium">
-                You have {profileData.mutualFriends} mutual friend
-                {profileData.mutualFriends > 1 ? "s" : ""}
-              </Text>
-              {profileData.mutualInterests.length > 0 && (
-                <Text className="text-pink-600 text-sm mt-1">
-                  Shared interests: {profileData.mutualInterests.join(", ")}
-                </Text>
-              )}
-            </View>
-          )}
 
           {/* Bio */}
           <View className="mb-6">

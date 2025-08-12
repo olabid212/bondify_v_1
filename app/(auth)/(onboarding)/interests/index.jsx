@@ -9,11 +9,9 @@ import {
   Keyboard,
   TouchableOpacity,
   ScrollView,
-  TextInput
 } from "react-native";
 import NextButton from "../../../../components/ui/NextButton";
 import { useRouter } from "expo-router";
-import { Ionicons } from "@expo/vector-icons";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const INTEREST_CATEGORIES = [
@@ -59,10 +57,8 @@ const INTEREST_CATEGORIES = [
   },
 ];
 
-
 const Interests = () => {
   const [selectedInterests, setSelectedInterests] = useState([]);
-  // const [searchTerm, setSearchTerm] = useState("");
   const router = useRouter();
 
   const toggleInterest = (interest) => {
@@ -75,78 +71,68 @@ const Interests = () => {
 
   return (
     <SafeAreaProvider>
-    <SafeAreaView className="flex-1 bg-white">
-   
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View className="flex-1 px-3">
-            <View className="mt-8">
-              <Text className="text-[25px] font-SatoshiBold text-app mb-4">
+      <SafeAreaView className="flex-1 bg-white">
+        <KeyboardAvoidingView
+          className="flex-1"
+          behavior={Platform.OS === "ios" ? "padding" : "height"}
+        >
+          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <View className="flex-1 px-4">
+              <Text className="text-[25px] font-SatoshiBold text-app mt-8 mb-4">
                 What are your interests?
               </Text>
 
-              {/* Search 
-              <View className="flex-row items-center bg-app border border-[#A4A4A4] rounded-lg px-4 py-3 mb-8">
-                <Ionicons name="search" size={20} color="#A4A4A4" />
-                <TextInput
-                  placeholder="Search your interests"
-                  placeholderTextColor="#A4A4A4"
-                  className="ml-2 flex-1 text-white"
-                  onChangeText={setSearchTerm}
-                  value={searchTerm}
-                />
-              </View>*/}
-            </View>
-
-            <ScrollView
-              className="flex-1"
-             showsVerticalScrollIndicator={false}
-            >
-              {INTEREST_CATEGORIES.map((category) => (
-                <View key={category.title} className="mb-6">
-                  <Text className="text-app font-SatoshiBold text-base mb-3">
-                    {category.title}
-                  </Text>
-                  <View className="flex-row flex-wrap gap-2">
-                    {category.items.map((interest) => {
-                      const selected = selectedInterests.includes(interest);
-                      return (
-                        <TouchableOpacity
-                          key={interest}
-                          onPress={() => toggleInterest(interest)}
-                          className={` px-4 py-2 rounded-full ${
-                            selected
-                              ? "border border-primary bg-primary font-SatoshiMedium text-white"
-                              : "bg-[#f1f1f1]"
-                          }`}
-                        >
-                          <Text
-                            className={`font-SatoshiMedium ${
-                              selected ? "text-white" : "text-app"
+              <ScrollView
+                showsVerticalScrollIndicator={false}
+                contentContainerStyle={{
+                  paddingBottom: 90,
+                  paddingTop: 4,
+                }}
+              >
+                {INTEREST_CATEGORIES.map((category) => (
+                  <View key={category.title} className="mb-6">
+                    <Text className="text-app font-SatoshiBold text-lg mb-3">
+                      {category.title}
+                    </Text>
+                    <View className="flex-row flex-wrap gap-2">
+                      {category.items.map((interest) => {
+                        const selected = selectedInterests.includes(interest);
+                        return (
+                          <TouchableOpacity
+                            key={interest}
+                            onPress={() => toggleInterest(interest)}
+                            className={`px-4 py-2 rounded-full border ${
+                              selected
+                                ? "bg-[#FF0066] border-[#FF0066]"
+                                : "bg-white border-[#D1D1D1]"
                             }`}
                           >
-                            {interest}
-                          </Text>
-                        </TouchableOpacity>
-                      );
-                    })}
+                            <Text
+                              className={`font-SatoshiMedium ${
+                                selected ? "text-white" : "text-app"
+                              }`}
+                            >
+                              {interest}
+                            </Text>
+                          </TouchableOpacity>
+                        );
+                      })}
+                    </View>
                   </View>
-                </View>
-              ))}
-            </ScrollView>
+                ))}
+              </ScrollView>
 
-            <View className="w-full items-end pb-6">
-              <NextButton
-                variant="gradient"
-                onPress={() => {
-                  // You can handle selectedInterests here before moving
-                  router.push("/upload-photo");
-                }}
-              />
+              <View className="absolute bottom-6 right-4">
+                <NextButton
+                  variant="gradient"
+                  onPress={() => router.push("/upload-photo")}
+                  disabled={selectedInterests.length === 0}
+                />
+              </View>
             </View>
-          </View>
-        </TouchableWithoutFeedback>
-
-    </SafeAreaView>
+          </TouchableWithoutFeedback>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
     </SafeAreaProvider>
   );
 };

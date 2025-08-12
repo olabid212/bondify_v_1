@@ -71,6 +71,7 @@ const RootTabs = () => {
           tabBarIcon: ({ focused }) => (
             <TabIcon focused={focused} customImage={images.bondifyIcon} />
           ),
+          
         }}
       />
 

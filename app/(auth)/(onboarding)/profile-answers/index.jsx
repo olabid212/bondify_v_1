@@ -59,7 +59,7 @@ const ProfileAnswers = () => {
             </View>
 
             <View className="w-full items-end pb-6">
-              <NextButton variant="gradient" onPress={() => router.push("/root-tabs")} />
+              <NextButton variant="gradient" onPress={() => router.push("/location-access")} />
             </View>
           </View>
         </TouchableWithoutFeedback>

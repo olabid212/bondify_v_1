@@ -20,7 +20,7 @@ const Button = ({
     loading ? (
       <ActivityIndicator color="#fff" />
     ) : (
-      <Text className={`text-xl font-SatoshiBold text-white ${textClassName}`}>
+      <Text className={`text-xl font-SatoshiMedium text-white ${textClassName}`}>
         {title}
       </Text>
     );
@@ -81,7 +81,7 @@ const Button = ({
         <ActivityIndicator color={variant === "secondary" ? "#000" : "#fff"} />
       ) : (
         <Text
-          className={`text-xl font-SatoshiBold ${textStyle} ${textClassName}`}
+          className={`text-xl font-SatoshiMedium ${textStyle} ${textClassName}`}
         >
           {title}
         </Text>

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, TouchableOpacity } from "react-native";
-import { X, Heart, WandSparkles } from "lucide-react-native";
+import { X, Heart, WandSparkles, ThumbsUp } from "lucide-react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
 const ActionButtons = ({ onSwipe, onSuperLike }) => (
@@ -8,7 +8,7 @@ const ActionButtons = ({ onSwipe, onSuperLike }) => (
     {/* Dislike Button */}
     <TouchableOpacity
       onPress={() => onSwipe("left")}
-      className="w-14 h-14 bg-gray-100 rounded-full items-center justify-center shadow-md"
+      className="w-16 h-16 bg-white rounded-full items-center justify-center shadow-md"
     >
       <X color="#6B7280" size={28} />
     </TouchableOpacity>
@@ -48,7 +48,7 @@ const ActionButtons = ({ onSwipe, onSuperLike }) => (
     {/* Like Button */}
     <TouchableOpacity
       onPress={() => onSwipe("right")}
-      className="w-14 h-14 bg-white rounded-full items-center justify-center shadow-md"
+      className="w-16 h-16 bg-white rounded-full items-center justify-center shadow-md"
     >
       <Heart color="#FD465C" size={28} fill="#FD465C" />
     </TouchableOpacity>

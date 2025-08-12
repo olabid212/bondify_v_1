@@ -43,8 +43,8 @@ const Gender = () => {
                   value={gender}
                   onChange={setGender}
                   options={[
-                    { label: "Man", value: "man" },
-                    { label: "Woman", value: "woman" },
+                    { label: "Male", value: "male" },
+                    { label: "Female", value: "female" },
                   ]}
                   className="mt-2"
                 />

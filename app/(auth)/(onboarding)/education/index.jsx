@@ -31,7 +31,7 @@ const Education = () => {
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
               <Text className="text-[25px] font-SatoshiBold text-app mb-2">
-            Highest Education Obtained
+                Highest Education Obtained
               </Text>
 
               <View>
@@ -43,8 +43,8 @@ const Education = () => {
                     { label: "Diploma", value: "diploma" },
                     { label: "Masters", value: "master" },
                     { label: "PhD", value: "phd" },
-                    { label: "Primary", value: "primary" },
                     { label: "Secondary", value: "secondary" },
+                    { label: "Primary", value: "primary" },
                     { label: "None", value: "none" },
                   ]}
                   className="mt-2"

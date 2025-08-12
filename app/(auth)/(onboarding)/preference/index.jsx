@@ -47,6 +47,7 @@ const Preference = () => {
                     { label: "Something Casual", value: "casual" },
                     { label: "Marriage", value: "marriage" },
                     { label: "Finding a Date", value: "finding-a-date" },
+                    { label: "Meet business oriented people", value: "business" },
                     { label: "I am not sure", value: "not-sure" },
                   ]}
                   className="mt-2"

@@ -37,11 +37,11 @@ const Username = () => {
               </Text>
               <View>
                 <TextInput
-                  placeholder="Badejo"
+                  placeholder="First name"
                   className="mt-4"
                   keyboardType="default"
                 />
-                <TextInput placeholder="Ibitayo" className="" />
+                <TextInput placeholder="Last name" className="" />
               </View>
               <Info title="This would be used to match people" />
             </View>

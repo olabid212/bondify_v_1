@@ -54,7 +54,7 @@ const Meet = () => {
             <View className="w-full items-end pb-6">
               <NextButton
                 variant="gradient"
-                onPress={() => router.push("/preference")}
+                onPress={() => router.push("/marital-status")}
               />
             </View>
           </View>

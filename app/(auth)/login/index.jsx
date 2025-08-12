@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   SafeAreaView,
   Text,
@@ -7,18 +7,15 @@ import {
   Platform,
   TouchableWithoutFeedback,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 import GlobalPhoneInput from "../../../components/inputs/PhoneInput";
-import { Image } from "expo-image";
 import NextButton from "../../../components/ui/NextButton";
-import HeaderWithLogo from "../../../components/headers/HeaderWithLogo";
 import { useRouter } from "expo-router";
+import TextInput from "../../../components/inputs/TextInput";
 
 const PhoneLogin = () => {
-  const handlePhoneChange = (phone) => {
-    console.log("Formatted Phone Number:", phone);
-  };
-
+  const [useEmail, setUseEmail] = useState(false);
   const router = useRouter();
 
   return (
@@ -31,16 +28,23 @@ const PhoneLogin = () => {
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View className="flex-1 px-2">
             <View className="flex-1 mt-8">
-              <Text className="text-2xl font-SatoshiBold text-black mb-2">
-                My number is
+              <Text className="text-3xl font-SatoshiBold text-black ">
+                Welcome back!
               </Text>
-              <Text className="mb-7 text-black font-SatoshiMedium">
-                We'll need your phone number to send an OTP for verification.
+              <Text className="mb-5 text-black text-lg font-Satoshi">
+              Login into your Bondify account
               </Text>
 
-              <GlobalPhoneInput
-                onChangePhone={(phone) => console.log(phone)}
-                onChangeCountry={(country) => console.log(country)}
+          
+                <GlobalPhoneInput
+                  onChangePhone={(phone) => console.log(phone)}
+                  onChangeCountry={(country) => console.log(country)}
+                />
+
+              <TextInput
+                placeholder="Enter your password"
+                className="mt-4"
+                secureTextEntry
               />
             </View>
 

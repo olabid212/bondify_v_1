@@ -55,8 +55,9 @@ const styles = StyleSheet.create({
     borderColor: "#dadada",
     borderRadius: 10,
     alignItems: "center",
-    height: 48,
+    height: 50,
     overflow: "hidden",
+    marginBottom: 17
   },
   countryPickerContainer: {
     borderRightWidth: 1,

@@ -1,4 +1,4 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Pressable } from "react-native";
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Image } from "expo-image";
@@ -49,21 +49,20 @@ const Onboarding = () => {
             {/* Buttons */}
             <View className="w-full">
               <Button
-                title="Continue with phone"
+                title="Continue with Phone Number"
                 onPress={() => router.push("/login")}
                 className="mb-3"
                 textClassName="font-santoshiMedium"
                 variant="white"
               />
-
-              <View className='items-center justify-center'>
-                <Text className="text-white font-SatoshiMedium">
-                  Don’t have an account?{" "}
+              <Button
+                title="Create Account"
+                onPress={() => router.push("/register")}
+                className="mb-3"
+                textClassName="font-santoshiMedium"
+                variant="black"
             
-                    <Text className="text-white font-SatoshiBold" onPress={() => router.push('/register')}>Sign Up</Text>
-          
-                </Text>
-              </View>
+              />
             </View>
           </View>
         </View>
